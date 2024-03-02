@@ -10,9 +10,10 @@ import {
 import { RiLoginBoxLine } from "react-icons/ri"
 import { FaUserPlus } from "react-icons/fa";
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 export function NavbarDefault() {
+  const {data: session} = useSession();
   const [openNav, setOpenNav] = React.useState(false);
-
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -20,7 +21,7 @@ export function NavbarDefault() {
     );
   }, []);
 
-  const navList = (
+  let navList = !session ? (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
@@ -28,7 +29,6 @@ export function NavbarDefault() {
         color="blue-gray"
         className="flex items-center gap-x-2 p-1 font-medium"
       >
-
         <Link href="/signup" className="flex items-center">
           <FaUserPlus size={18} />
           Signup
@@ -46,6 +46,20 @@ export function NavbarDefault() {
         </Link>
       </Typography>
     </ul>
+  ) : (
+    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="flex items-center gap-x-2 p-1 font-medium"
+      >
+        <Button onClick={()=> signOut()} variant="filled" color="green" className="">
+          Logout
+        </Button>
+      </Typography>
+    </ul>
+
   );
 
   return (
