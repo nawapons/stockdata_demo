@@ -17,10 +17,12 @@ export default function Home() {
     </>
     )
   } else {
-    <>
-      <NavbarDefault />
-      <div className="grid grid-cols-4 justify-center">
-        Need Login to see Stock Price
-      </div></>
+    return (
+      <>
+        <NavbarDefault />
+        <div className="grid grid-cols-4 justify-center">
+          Need Login to see Stock Price
+        </div></>
+    )
   }
 }
