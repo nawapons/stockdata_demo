@@ -8,7 +8,6 @@ This project inspiration by Dime Appplication , because dime don't have web appl
 - NextJS FullStack
 - material Tailwind
 - API from real-time-finance-data in RapidAPI (Free version)
-- MongoDB (for user stock data but not include yet , in future..)
 - 
 ## Getting Started
 
